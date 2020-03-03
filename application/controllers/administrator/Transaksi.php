@@ -34,6 +34,12 @@ class Transaksi extends CI_Controller {
 		$data['data'] = $this->Transaksi_Model->with('client')->find($id);
 		$this->load->view('administrator/index', $data);	
 	}
+	public function print($id)
+	{
+		$data['content'] = 'print/transaksi_item';
+		$data['data'] = $this->Transaksi_Model->with('client')->find($id);
+		$this->load->view('print/layout', $data);	
+	}
 
 	public function save(){
 		$uploadData = $this->do_upload('bukti_bayar');

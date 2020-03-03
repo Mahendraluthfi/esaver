@@ -99,7 +99,7 @@
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <a href="<?php echo base_url('administrator/transaksi') ?>" class="btn btn-danger">Batal</a>
                         <?php else: ?>
-                            <a href="<?php echo site_url('administrator/transaksi/cetak/' . $data->kode_transaksi) ?>" class="btn btn-primary">Cetak</a> 
+                            <a href="<?php echo site_url('administrator/transaksi/print/' . $data->kode_transaksi) ?>" class="btn btn-primary">Cetak</a> 
                         <?php endif ?>
                         <a href="<?php echo site_url('administrator/transaksi') ?>" class="btn btn-primary">Kembali</a> 
                     </div>
