@@ -1,5 +1,5 @@
 <div class="modal fade" id="clientModal" tabindex="-1" role="dialog" aria-labelledby="clientModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Pilih jemaat</h5>
@@ -8,12 +8,12 @@
                 </button>
             </div>
             <div class="modal-body">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" id="clientModalSearchInput" placeholder="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" id="clientModalSearchBtn" type="button">Search</button>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="clientModalSearchInput" placeholder="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" id="clientModalSearchBtn" type="button">Search</button>
+                    </div>
                 </div>
-            </div>
                 <table id="clientModalTable" class="table table-striped table-bordered nowrap">
                     <thead>
                         <tr>
@@ -72,7 +72,11 @@ function rePopulateTable(data){
     }
 }
 function buildRow(item){
-    var row = $('<tr/>')
+    var row = $('<tr/>',{
+        css:{
+            'cursor':'pointer'
+        }
+    })
     row.append(buildCol(item.user_id,'user_id'))
     row.append(buildCol(item.nama,'nama'))
     row.append(buildCol(item.nik,'nik'))
