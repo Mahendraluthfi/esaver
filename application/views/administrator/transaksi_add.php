@@ -28,8 +28,7 @@
 </div>
 <div class="card">
     <div class="card-header d-flex">
-        <h3 class="d-inline-block">Tambah Transaksi</h3>
-        <a href="<?php echo site_url('administrator/transaksi') ?>" class="btn btn-primary ml-auto">Kembali</a>                    
+        <h3 class="d-inline-block">Tambah Transaksi</h3>                   
     </div>
     <div class="card-body">
         <div class="container-fluid">
@@ -85,15 +84,19 @@
                         </div>
                     </div>
                 </div>
-                <?php if(!$data): ?>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label"></label>
                     <div class="col-sm-3">
+                        <?php if(!$data): ?>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <a href="<?php echo base_url('administrator/transaksi') ?>" class="btn btn-danger">Batal</a>
+                        <?php else: ?>
+                            <a href="<?php echo site_url('administrator/transaksi/cetak/' . $data->kode_transaksi) ?>" class="btn btn-primary">Cetak</a> 
+                        <?php endif ?>
+                        <a href="<?php echo site_url('administrator/transaksi') ?>" class="btn btn-primary">Kembali</a> 
                     </div>
                 </div>
-                <?php endif ?>
+                
             </form>
         </div>
     </div>

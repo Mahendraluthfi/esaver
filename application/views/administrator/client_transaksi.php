@@ -39,7 +39,7 @@
             </div>
             <div class="card-body">  
                 <label for="">Saldo</label>
-                <p>Rp.1000000 </p>
+                <p> <?php echo moneyFormat($data['saldo']->total_saldo) ?> </p>
             </div>
         </div>
     </div>
@@ -72,7 +72,7 @@
                     <td><?php echo $key+1 ?></td>
                     <td><?php echo $item->kode_transaksi ?></td>
                     <td><?php echo $item->date ?></td>
-                    <td><?php echo $item->amount ?></td>
+                    <td><?php echo moneyFormat($item->amount) ?></td>
                     <td><?php echo $item->tipe_bayar ?></td>
                     <td><a href="<?php echo site_url() . 'administrator/transaksi/show/'. $item->kode_transaksi ?>" class="btn  btn-info"><i class="ik ik-eye"></i></a></td>
                 </tr>

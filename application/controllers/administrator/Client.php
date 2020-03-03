@@ -12,8 +12,8 @@ class Client extends CI_Controller {
         	redirect('login','refresh');
         }
         $this->load->library('Uuid');
-        $this->load->model(['Client_Model','Transaksi_Model']);
-        $this->load->helper('response');
+        $this->load->model(['Client_Model','Transaksi_Model','Saldo_Model']);
+        $this->load->helper(['response']);
 	}
 
 	public function index()
@@ -36,6 +36,7 @@ class Client extends CI_Controller {
 	{
 		$data['data']['transaksi'] =  $this->Transaksi_Model->select()->condition(['user_id'=>$id])->get();
 		$data['data']['client'] =  $this->Client_Model->find($id);
+		$data['data']['saldo'] =  $this->Saldo_Model->find($id);
 		$data['content'] = 'administrator/client_transaksi';
 		$this->load->view('administrator/index', $data);
 	}
