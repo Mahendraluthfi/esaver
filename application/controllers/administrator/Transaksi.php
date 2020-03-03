@@ -27,22 +27,53 @@ class Transaksi extends CI_Controller {
 		$data['content'] = 'administrator/transaksi_add';
 		$this->load->view('administrator/index', $data);	
 	}
+	public function show($id)
+	{
+		$data['content'] = 'administrator/transaksi_add';
+		$data['data'] = $this->Transaksi_Model->with('client')->find($id);
+		$this->load->view('administrator/index', $data);	
+	}
 
 	public function save(){
-		$newData = $this->Transaksi_Model->insert([
-			'kode_transaksi'=> bin2hex(random_bytes(16)),
-			'user_id' => $this->input->post('user_id'),
-			'amount' => $this->input->post('amount'),
-			'tipe_bayar' => $this->input->post('type'),
-			'foto_bukti' => '.',
-			'date' => date('Y-m-d')
-		]);
-		$this->session->set_flashdata('msg', '
-			<div class="alert alert-success">					
-				<strong>Sukses !</strong> Data disimpan !
-			</div>
-			');
-		redirect('administrator/transaksi','refresh');
+		$uploadData = $this->do_upload('bukti_bayar');
+		if($uploadData){
+			$newData = $this->Transaksi_Model->insert([
+				'kode_transaksi'=> bin2hex(random_bytes(16)),
+				'user_id' => $this->input->post('user_id'),
+				'amount' => $this->input->post('amount'),
+				'tipe_bayar' => $this->input->post('type'),
+				'foto_bukti' => 'assets/fotoclient/buktibayar/' . $uploadData['file_name'],
+				'date' => date('Y-m-d')
+			]);
+			$this->session->set_flashdata('msg', '
+				<div class="alert alert-success">					
+					<strong>Sukses !</strong> Data disimpan !
+				</div>
+				');
+			redirect('administrator/transaksi','refresh');
+		}else{
+			redirect('administrator/transaksi/add');
+		}
+		
+	}
+
+	private function  do_upload($iName)
+    {
+            $config['upload_path']          = './assets/fotoclient/buktibayar/';
+            $config['allowed_types']        = 'gif|jpg|png';
+
+            $this->upload->initialize($config);
+
+            if ( ! $this->upload->do_upload($iName))
+            {
+				$this->session->set_flashdata('msg', '
+				<div class="alert alert-danger">'. $this->upload->display_errors() .'</div>');
+				return false;
+            }
+            else
+            {
+                return $this->upload->data();
+            }
 	}
 }
 

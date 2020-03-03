@@ -66,7 +66,7 @@
                     <td><?php echo $item->date ?></td>
                     <td><?php echo $item->amount ?></td>
                     <td><?php echo $item->tipe_bayar ?></td>
-                    <td></td>
+                    <td><a href="<?php echo site_url() . 'administrator/transaksi/show/ '. $item->kode_transaksi ?>" class="btn"></a></td>
                 </tr>
                 <?php endforeach ?>
                 </tbody>
