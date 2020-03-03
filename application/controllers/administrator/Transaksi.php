@@ -12,7 +12,7 @@ class Transaksi extends CI_Controller {
         	redirect('login','refresh');
         }
         $this->load->library('Uuid');
-        $this->load->model('Transaksi_Model');
+        $this->load->model(['Transaksi_Model','Saldo_Model']);
 	}
 
 	public function index()
@@ -24,6 +24,7 @@ class Transaksi extends CI_Controller {
 
 	public function add()
 	{
+		$data['data'] = false;
 		$data['content'] = 'administrator/transaksi_add';
 		$this->load->view('administrator/index', $data);	
 	}
@@ -44,8 +45,9 @@ class Transaksi extends CI_Controller {
 				'amount' => $this->input->post('amount'),
 				'tipe_bayar' => $this->input->post('type'),
 				'foto_bukti' => 'assets/fotoclient/buktibayar/' . $uploadData['file_name'],
-				'date' => date('Y-m-d')
+				'date' => date('Y-m-d h:i:s')
 			]);
+			$this->Saldo_Model->update_saldo($this->input->post('user_id'),$this->input->post('amount'));
 			$this->session->set_flashdata('msg', '
 				<div class="alert alert-success">					
 					<strong>Sukses !</strong> Data disimpan !

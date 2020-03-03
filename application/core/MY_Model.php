@@ -49,6 +49,11 @@ class MY_Model extends CI_Model{
     function find($id){
         return $this->select()->condition([$this->pk => $id])->get(true);
     }
+    function update($id,$data){
+        $this->result->where($this->pk, $id);
+        $this->result->update($this->tb_name, $data);
+        return $this->find($id);
+    }
 
     function insert($data){
         $this->result->insert($this->tb_name, $data);
