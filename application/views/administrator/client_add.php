@@ -4,8 +4,8 @@
             <div class="page-header-title">
                 <i class="ik ik-home bg-blue"></i>
                 <div class="d-inline">
-                    <h5>Client</h5>
-                    <span>Tambah Client Jamaah Umroh</span>
+                    <h5>Jamaah</h5>
+                    <span>Tambah Jamaah Umroh</span>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                         <a href="<?php echo base_url() ?>"><i class="ik ik-home"></i> Dashboard</a>
                     </li> 
                     <li class="breadcrumb-item">
-                        <a href="<?php echo base_url('administrator/client') ?>"><i class="ik ik-users"></i> Client</a>
+                        <a href="<?php echo base_url('administrator/client') ?>"><i class="ik ik-users"></i> Jamaah</a>
                     </li>                     
                     <li class="breadcrumb-item active">
                         Tambah Baru
@@ -29,7 +29,7 @@
 
 <div class="card">
     <div class="card-header d-block">
-        <h3>Formulir Pendaftaran Client</h3>                    
+        <h3>Formulir Pendaftaran Jamaah</h3>                    
     </div>
     <div class="card-body">
         <div class="container-fluid">
@@ -77,7 +77,7 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">E-mail</label>
                     <div class="col-sm-9">
-                        <input type="email" class="form-control" placeholder="Alamat E-mail" name="email">
+                        <input type="email" class="form-control" placeholder="Alamat E-mail" name="email" required="">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -185,7 +185,7 @@
                     <label class="col-sm-3 col-form-label"></label>
                     <div class="col-sm-3">
                         <button type="submit" class="btn btn-primary">Simpan</button>
-                        <button type="button" class="btn btn-danger">Batal</button>
+                        <a href="<?php echo base_url('administrator/client') ?>" class="btn btn-danger">Batal</a>
                     </div>
                 </div>
             </form>
@@ -196,6 +196,49 @@
 
 <script>
     
-  
+  $(document).ready(function(){
+    $('#prov').change(function(){
+    var id=$(this).val();
+        $.ajax({
+        url : "<?php echo site_url();?>administrator/client/get_kabkot",
+        method : "POST",
+        data : {id: id},
+        async : false,
+        dataType : 'json',
+        success: function(data){
+        var html = '';
+        var i;
+        html += '<option value="0">-- Pilih --</option>';                    
+        for(i=0; i<data.length; i++){
+            html += '<option value="'+data[i].id_kabkot+'">'+data[i].nama_kabkot+'</option>';
+        }
+        $('#kabkot').html(html);                      
+        // $('#kabkot').trigger('change');                        
+        }
+    });
+    });
+});
+
+$(document).ready(function(){
+        $('.kabkot').change(function(){
+            var id=$(this).val();
+            $.ajax({
+                url : "<?php echo site_url();?>administrator/client/get_kec",
+                method : "POST",
+                data : {id: id},
+                async : false,
+                dataType : 'json',
+                success: function(data){
+                    var html = '';
+                    var i;
+                    for(i=0; i<data.length; i++){
+                        html += '<option value="'+data[i].id_kec+'">'+data[i].nama_kec+'</option>';
+                    }
+                    $('.kec').html(html);
+                    
+                }
+            });
+        });
+});
 
 </script>

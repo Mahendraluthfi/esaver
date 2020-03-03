@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2020 at 01:18 PM
+-- Generation Time: Mar 03, 2020 at 02:42 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.2.25
 
@@ -37,6 +37,7 @@ CREATE TABLE `client` (
   `tempat` varchar(50) NOT NULL,
   `tgl_lahir` date NOT NULL,
   `usia` int(11) NOT NULL,
+  `nm_ibu` varchar(50) NOT NULL,
   `jekel` varchar(1) NOT NULL,
   `alamat` text NOT NULL,
   `status_nikah` varchar(20) NOT NULL,
@@ -48,15 +49,16 @@ CREATE TABLE `client` (
   `pekerjaan` text NOT NULL,
   `foto` text NOT NULL,
   `paket` int(11) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1
+  `status` int(11) NOT NULL DEFAULT 1,
+  `password` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`user_id`, `nik`, `nama`, `no_paspor`, `email`, `tempat`, `tgl_lahir`, `usia`, `jekel`, `alamat`, `status_nikah`, `id_prov`, `id_kabkot`, `id_kec`, `kodepos`, `telp`, `pekerjaan`, `foto`, `paket`, `status`) VALUES
-('379b5732be1d44d', '3319032608940001', 'Prionaka Luthfi Mahendra', '5353168', 'mahendraluthfi@gmail.com', 'Kudus', '1994-08-26', 25, 'L', '', 'Belum Menikah', 33, 3319, 3319030, 59317, '085713399821', 'Swasta', '', 24, 1);
+INSERT INTO `client` (`user_id`, `nik`, `nama`, `no_paspor`, `email`, `tempat`, `tgl_lahir`, `usia`, `nm_ibu`, `jekel`, `alamat`, `status_nikah`, `id_prov`, `id_kabkot`, `id_kec`, `kodepos`, `telp`, `pekerjaan`, `foto`, `paket`, `status`, `password`) VALUES
+('379b5732be1d44d', '3319032608940001', 'Prionaka Luthfi Mahendra', '5353168', 'mahendraluthfi@gmail.com', 'Kudus', '1994-08-26', 25, 'Sri', 'L', 'Ds. Jepang Pakis', 'Belum Menikah', 33, 3319, 3319060, 59317, '085713399821', 'Swasta', '', 24, 1, '');
 
 -- --------------------------------------------------------
 

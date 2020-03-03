@@ -22,6 +22,9 @@
         <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/select2/dist/css/select2.min.css">        
         <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">        
         <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+        <script>window.jQuery || document.write('<script src="<?php echo base_url() ?>assets/src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
         
         
 
@@ -61,7 +64,7 @@
                             <h5 style="margin-left: 10px; font-family: Exo; ">PT. Tsuraiya Travel</h5>
                         </div>
                         <div class="top-menu d-flex align-items-center">                            
-                            <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal" data-target="#appsModal"><i class="ik ik-grid"></i></button>
+                            <!-- <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal" data-target="#appsModal"><i class="ik ik-grid"></i></button> -->
                             <div class="dropdown">
                                 <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="<?php echo base_url() ?>assets/img/user.jpg" alt=""></a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -274,89 +277,8 @@
                 </footer>
             </div>
         </div>
+                        
         
-        
-        
-
-        <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel" aria-hidden="true" data-backdrop="false">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ik ik-x-circle"></i></button>
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="quick-search">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4 ml-auto mr-auto">
-                                    <div class="input-wrap">
-                                        <input type="text" id="quick-search" class="form-control" placeholder="Search..." />
-                                        <i class="ik ik-search"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body d-flex align-items-center">
-                        <div class="container">
-                            <div class="apps-wrap">
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-mail"></i><span>Message</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-users"></i><span>Accounts</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-shopping-cart"></i><span>Sales</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-briefcase"></i><span>Purchase</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-server"></i><span>Menus</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-clipboard"></i><span>Pages</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-message-square"></i><span>Chats</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-map-pin"></i><span>Contacts</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-box"></i><span>Blocks</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-calendar"></i><span>Events</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-bell"></i><span>Notifications</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-pie-chart"></i><span>Reports</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-layers"></i><span>Tasks</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-edit"></i><span>Blogs</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-settings"></i><span>Settings</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-more-horizontal"></i><span>More</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script>window.jQuery || document.write('<script src="<?php echo base_url() ?>assets/src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
         <script src="<?php echo base_url() ?>assets/plugins/popper.js/dist/umd/popper.min.js"></script>
         <script src="<?php echo base_url() ?>assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url() ?>assets/plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
@@ -375,50 +297,7 @@
                 $('.loader-inner').delay(150).fadeOut('slow'); 
             }, 1000);
             $(".select2").select2();
-        $(document).ready(function(){
-            $('#prov').change(function(){
-            var id=$(this).val();
-                $.ajax({
-                url : "<?php echo site_url();?>administrator/client/get_kabkot",
-                method : "POST",
-                data : {id: id},
-                async : false,
-                dataType : 'json',
-                success: function(data){
-                var html = '';
-                var i;
-                html += '<option value="0">-- Pilih --</option>';                    
-                for(i=0; i<data.length; i++){
-                    html += '<option value="'+data[i].id_kabkot+'">'+data[i].nama_kabkot+'</option>';
-                }
-                $('#kabkot').html(html);                      
-                // $('#kabkot').trigger('change');                        
-                }
-            });
-            });
-        });
-
-        $(document).ready(function(){
-                $('.kabkot').change(function(){
-                    var id=$(this).val();
-                    $.ajax({
-                        url : "<?php echo site_url();?>administrator/client/get_kec",
-                        method : "POST",
-                        data : {id: id},
-                        async : false,
-                        dataType : 'json',
-                        success: function(data){
-                            var html = '';
-                            var i;
-                            for(i=0; i<data.length; i++){
-                                html += '<option value="'+data[i].id_kec+'">'+data[i].nama_kec+'</option>';
-                            }
-                            $('.kec').html(html);
-                            
-                        }
-                    });
-                });
-            });
+        
 
           $(function() {
             $('.file-upload-browse').on('click', function() {
