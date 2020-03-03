@@ -37,8 +37,9 @@ class Transaksi extends CI_Controller {
 	public function save(){
 		$uploadData = $this->do_upload('bukti_bayar');
 		if($uploadData){
+			$id = bin2hex(random_bytes(16));
 			$newData = $this->Transaksi_Model->insert([
-				'kode_transaksi'=> bin2hex(random_bytes(16)),
+				'kode_transaksi'=> $id,
 				'user_id' => $this->input->post('user_id'),
 				'amount' => $this->input->post('amount'),
 				'tipe_bayar' => $this->input->post('type'),
@@ -50,7 +51,7 @@ class Transaksi extends CI_Controller {
 					<strong>Sukses !</strong> Data disimpan !
 				</div>
 				');
-			redirect('administrator/transaksi','refresh');
+			redirect('administrator/transaksi/show/' . $id,'refresh');
 		}else{
 			redirect('administrator/transaksi/add');
 		}
