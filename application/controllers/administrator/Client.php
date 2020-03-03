@@ -12,6 +12,8 @@ class Client extends CI_Controller {
         	redirect('login','refresh');
         }
         $this->load->library('Uuid');
+        $this->load->model('Client_Model');
+        $this->load->helper('response');
 	}
 
 	public function index()
@@ -19,6 +21,16 @@ class Client extends CI_Controller {
 		$data['get'] = $this->db->get('client')->result();
 		$data['content'] = 'administrator/client';
 		$this->load->view('administrator/index', $data);
+	}
+
+	public function get_data()
+	{
+		$data = $this->Client_Model->select();
+		if($this->input->get('name')){
+			$data = $data->condition(['nama'=>$this->input->get('name')],'like');
+		}
+		$data = $data->get();
+		return_json($data);
 	}
 
 	public function tes()
