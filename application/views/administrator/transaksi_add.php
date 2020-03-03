@@ -28,7 +28,7 @@
 </div>
 <div class="card">
     <div class="card-header d-flex">
-        <h3 class="d-inline-block">Tambah Transaksi</h3>                   
+        <h3 class="d-inline-block"><?php echo $data? 'Transaksi - ' . $data->kode_transaksi : 'Tambah Transaksi' ?></h3>                   
     </div>
     <div class="card-body">
         <div class="container-fluid">
@@ -60,6 +60,14 @@
                         <?php endif ?>
                     </div>
                 </div>
+                <?php if($data): ?>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Tanggal</label>
+                    <div class="col-sm-9">
+                        <p><?php echo date('d-M-Y h:i:s',strtotime($data->date)) ?></p>
+                    </div>
+                </div>
+                <?php endif ?>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Tipe bayar</label>
                     <div class="col-sm-3">
