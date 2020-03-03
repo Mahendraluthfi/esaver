@@ -12,12 +12,32 @@ class Client extends CI_Controller {
         	redirect('login','refresh');
         }
         $this->load->library('Uuid');
+        $this->load->model(['Client_Model','Transaksi_Model','Saldo_Model']);
+        $this->load->helper(['response']);
 	}
 
 	public function index()
 	{
 		$data['get'] = $this->db->get('client')->result();
 		$data['content'] = 'administrator/client';
+		$this->load->view('administrator/index', $data);
+	}
+
+	public function get_data()
+	{
+		$data = $this->Client_Model->select();
+		if($this->input->get('name')){
+			$data = $data->condition(['nama'=>$this->input->get('name')],'like');
+		}
+		$data = $data->get();
+		return_json($data);
+	}
+	public function saldo($id)
+	{
+		$data['data']['transaksi'] =  $this->Transaksi_Model->select()->condition(['user_id'=>$id])->get();
+		$data['data']['client'] =  $this->Client_Model->find($id);
+		$data['data']['saldo'] =  $this->Saldo_Model->find($id);
+		$data['content'] = 'administrator/client_transaksi';
 		$this->load->view('administrator/index', $data);
 	}
 

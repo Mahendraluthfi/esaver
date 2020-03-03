@@ -75,7 +75,7 @@
                                 }
                              ?></td>
                             <td>
-                                <button type="button" class="btn btn-primary"><i class="ik ik-dollar-sign"></i></button>
+                                <a href="<?php echo site_url('administrator/client/saldo/'.$data->user_id) ?>" class="btn btn-primary"><i class="ik ik-dollar-sign"></i></a>
                                 <button type="button" class="btn btn-info"><i class="ik ik-eye"></i></button>
                                 <a href="<?php echo base_url('administrator/client/edit/'.$data->user_id) ?>" class="btn btn-warning" title="Edit Data"><i class="ik ik-edit"></i></a>
                                 <button type="button" class="btn btn-danger" onclick="hapus('<?php echo $data->user_id ?>')"><i class="ik ik-trash"></i></button>

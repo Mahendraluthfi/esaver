@@ -31,13 +31,23 @@
         margin-left: 5px;
     }
 </style>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h3><?php echo $data['client']->nama ?></h3>     
+            </div>
+            <div class="card-body">  
+                <label for="">Saldo</label>
+                <p> <?php echo moneyFormat($data['saldo']->total_saldo) ?> </p>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="card">
     <div class="card-header d-block">
         <div class="float-left">
         <h3>Data Transaksi</h3>            
-        </div>
-        <div class="float-right">
-            <a href="<?php echo base_url('administrator/transaksi/add') ?>" class="btn btn-info"><i class="ik ik-plus"></i>Tambah</a>
         </div>
     </div>
     <div class="card-body">
@@ -50,7 +60,6 @@
                 <tr>
                     <th width="1%">No</th>
                     <th>Kode Transaksi</th>
-                    <th>Nama Jemaah</th>
                     <th>Tanggal</th>
                     <th>Jumlah</th>
                     <th>Tipe</th>
@@ -58,11 +67,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($data as $key => $item): ?>
+                <?php foreach ($data['transaksi'] as $key => $item): ?>
                 <tr>
                     <td><?php echo $key+1 ?></td>
                     <td><?php echo $item->kode_transaksi ?></td>
-                    <td><?php echo $item->nama ?></td>
                     <td><?php echo $item->date ?></td>
                     <td><?php echo moneyFormat($item->amount) ?></td>
                     <td><?php echo $item->tipe_bayar ?></td>
@@ -74,7 +82,6 @@
                 <tr>
                     <th width="1%">No</th>
                     <th>Kode Transaksi</th>
-                    <th>Nama Jemaah</th>
                     <th>Tanggal</th>
                     <th>Jumlah</th>
                     <th>Tipe</th>
