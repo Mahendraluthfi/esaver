@@ -39,7 +39,7 @@
             </div>
             <div class="card-body">  
                 <label for="">Saldo</label>
-                <p> <?php echo moneyFormat($data['saldo']->total_saldo) ?> </p>
+                <p> <?php echo moneyFormat($data['saldo']?$data['saldo']->total_saldo:0) ?> </p>
             </div>
         </div>
     </div>
