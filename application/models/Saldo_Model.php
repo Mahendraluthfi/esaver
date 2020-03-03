@@ -1,7 +1,7 @@
 <?php
 
-class Client_Model extends MY_Model{
-    protected $tb_name = 'client';
+class Saldo_Model extends MY_Model{
+    protected $tb_name = 'saldo';
     protected $pk = 'user_id';
     protected $relation = [
         'transaksi'=>[
