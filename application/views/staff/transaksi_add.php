@@ -40,7 +40,7 @@
                     <div class="col-sm-9">
                         <?php if(!$data): ?>
                         <div class="input-group">
-                            <input type="text" data-modal="clientModal" class="form-control" placeholder="User" name="user_id" required="">
+                            <input type="text" readonly data-modal="clientModal" class="form-control" placeholder="User ID / Jemaah" name="user_id" required="">
                             <div class="input-group-append">
                                 <button data-toggle="modal" data-target="#clientModal" class="btn btn-outline-secondary" type="button">Pilih</button>
                             </div>
@@ -56,7 +56,7 @@
                         <?php if(!$data): ?>
                         <input type="number" min="0" class="form-control" placeholder="Jumlah" name="amount" required="">
                         <?php else: ?>
-                            <p><?php echo $data->amount ?></p>
+                            <p><?php echo moneyFormat($data->amount) ?></p>
                         <?php endif ?>
                     </div>
                 </div>
