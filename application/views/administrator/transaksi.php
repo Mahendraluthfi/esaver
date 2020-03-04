@@ -66,7 +66,10 @@
                     <td><?php echo $item->date ?></td>
                     <td><?php echo moneyFormat($item->amount) ?></td>
                     <td><?php echo $item->tipe_bayar ?></td>
-                    <td><a href="<?php echo site_url() . 'administrator/transaksi/show/'. $item->kode_transaksi ?>" class="btn  btn-info"><i class="ik ik-eye"></i></a></td>
+                    <td>
+                        <a href="<?php echo site_url() . 'administrator/transaksi/show/'. $item->kode_transaksi ?>" class="btn  btn-info"><i class="ik ik-eye"></i></a>
+                        <a data-toggle="modal" data-target="#modalDeleteTransaksi" href="<?php echo site_url() . 'administrator/transaksi/delete/'. $item->kode_transaksi ?>" class="btn  btn-danger"><i class="ik ik-trash"></i></a>
+                    </td>
                 </tr>
                 <?php endforeach ?>
                 </tbody>
@@ -87,3 +90,23 @@
     </div>
 </div>
 
+<div class="modal fade" id="modalDeleteTransaksi" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4 class="text-center">Hapus Data Transaksi ?</h4>
+            </div>
+            <div class="modal-footer" style="justify-content: center;">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <a href="#" id="modalDeleteTransaksiAction" class="btn btn-danger btn-hps">Hapus</a>
+            </div>
+            <?php echo form_close(); ?>            
+        </div>
+    </div>
+</div>
+<script>
+    $('#modalDeleteTransaksi').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        $('#modalDeleteTransaksiAction').attr('href', button.attr('href'));
+    })
+</script>

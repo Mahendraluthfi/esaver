@@ -34,6 +34,14 @@ class Transaksi extends CI_Controller {
 		$data['data'] = $this->Transaksi_Model->with('client')->find($id);
 		$this->load->view('administrator/index', $data);	
 	}
+	public function delete($id)
+	{
+		$dTrans = $this->Transaksi_Model->find($id);
+		if($this->Transaksi_Model->condition(['kode_transaksi'=>$id])->delete()){
+			$this->Saldo_Model->update_saldo($dTrans->user_id,($dTrans->amount * -1));
+		}
+		redirect('administrator/transaksi');
+	}
 	public function print($id)
 	{
 		$data['content'] = 'print/transaksi_item';

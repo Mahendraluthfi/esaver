@@ -53,9 +53,18 @@ class MY_Model extends CI_Model{
     function getFirst(){
         return $this->get(true);
     }
+    function delete(){
+        $this->result->delete($this->tb_name);
+        return true;
+    }
 
-    function find($id){
-        return $this->select()->condition([$this->pk => $id])->get(true);
+    function find($id,$show = true){
+        $data = $this->select()->condition([$this->pk => $id]);
+        if($show){
+            return $data->getFirst();
+        }else{
+            return $data;
+        }
     }
     function update($id,$data){
         $this->result->where($this->pk, $id);
