@@ -37,7 +37,7 @@
         <h3>Data Transaksi</h3>            
         </div>
         <div class="float-right">
-            <a href="<?php echo base_url('administrator/transaksi/add') ?>" class="btn btn-info"><i class="ik ik-plus"></i>Tambah</a>
+            <a href="<?php echo base_url('staff/transaksi/add') ?>" class="btn btn-info"><i class="ik ik-plus"></i>Tambah</a>
         </div>
     </div>
     <div class="card-body">
@@ -67,8 +67,8 @@
                     <td><?php echo moneyFormat($item->amount) ?></td>
                     <td><?php echo $item->tipe_bayar ?></td>
                     <td>
-                        <a href="<?php echo site_url() . 'administrator/transaksi/show/'. $item->kode_transaksi ?>" class="btn  btn-info"><i class="ik ik-eye"></i></a>
-                        <a data-toggle="modal" data-target="#modalDeleteTransaksi" href="<?php echo site_url() . 'administrator/transaksi/delete/'. $item->kode_transaksi ?>" class="btn  btn-danger"><i class="ik ik-trash"></i></a>
+                        <a href="<?php echo site_url() . 'staff/transaksi/show/'. $item->kode_transaksi ?>" class="btn  btn-info"><i class="ik ik-eye"></i></a>
+                        <a data-toggle="modal" data-target="#modalDeleteTransaksi" href="<?php echo site_url() . 'staff/transaksi/delete/'. $item->kode_transaksi ?>" class="btn  btn-danger"><i class="ik ik-trash"></i></a>
                     </td>
                 </tr>
                 <?php endforeach ?>

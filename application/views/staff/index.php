@@ -18,7 +18,12 @@
         <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/icon-kit/dist/css/iconkit.min.css">
         <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css">
         <link rel="stylesheet" href="<?php echo base_url() ?>assets/dist/css/theme.min.css">
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/dist/css/loader.css">
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/select2/dist/css/select2.min.css"> 
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">   
         <script src="<?php echo base_url() ?>assets/src/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>window.jQuery || document.write('<script src="<?php echo base_url() ?>assets/src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
     </head>
 
     <body>
@@ -26,6 +31,25 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+            </div>
+        </div>
         <div class="wrapper">
             <header class="header-top" header-theme="light">
                 <div class="container-fluid">
@@ -124,7 +148,7 @@
                         <div class="nav-container">
                             <nav id="main-menu-navigation" class="navigation-main">                                
                                 <div class="nav-item">
-                                    <a href="../../index.html"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
+                                    <a href="<?php echo site_url('staff/dashboard') ?>"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                                 </div>  
                                 <!-- <div class="nav-lavel">Pengguna</div>
                                 <div class="nav-item">
@@ -133,7 +157,7 @@
                                 </div> -->
                                 <div class="nav-lavel">Fitur</div>
                                 <div class="nav-item">
-                                    <a href="../../index.html"><i class="ik ik-repeat"></i><span>Transaksi</span></a>                                    
+                                    <a href="<?php echo site_url('staff/transaksi') ?>"><i class="ik ik-repeat"></i><span>Transaksi</span></a>                                    
                                 </div>                                 
                                 <div class="nav-item has-sub">
                                     <a href="#"><i class="ik ik-upload-cloud"></i><span>Export / Import</span></a>
@@ -157,7 +181,7 @@
                 </div>
                 <div class="main-content">
                     <div class="container-fluid">
-                        
+                        <?php $this->load->view($content); ?>
                     </div>
                 </div>
                 <aside class="right-sidebar">
@@ -384,21 +408,33 @@
             </div>
         </div>
         
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script>window.jQuery || document.write('<script src="<?php echo base_url() ?>assets/src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
         <script src="<?php echo base_url() ?>assets/plugins/popper.js/dist/umd/popper.min.js"></script>
         <script src="<?php echo base_url() ?>assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url() ?>assets/plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
         <script src="<?php echo base_url() ?>assets/plugins/screenfull/dist/screenfull.js"></script>
         <script src="<?php echo base_url() ?>assets/dist/js/theme.min.js"></script>
+        <script src="<?php echo base_url() ?>assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="<?php echo base_url() ?>assets/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="<?php echo base_url() ?>assets/js/datatables.js"></script>              
+        <script src="<?php echo base_url() ?>assets/plugins/select2/dist/js/select2.min.js"></script>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+             setTimeout(function(){        
+                $('.loader').fadeOut();
+                $('.loader-inner').delay(150).fadeOut('slow'); 
+            }, 1000);
+            $(".select2").select2();
+        
+
+          $(function() {
+            $('.file-upload-browse').on('click', function() {
+              var file = $(this).parent().parent().parent().find('.file-upload-default');
+              file.trigger('click');
+            });
+            $('.file-upload-default').on('change', function() {
+              $(this).parent().find('.form-control').val($(this).val().replace(/C:\\fakepath\\/i, ''));
+            });
+          });
         </script>
     </body>
 </html>

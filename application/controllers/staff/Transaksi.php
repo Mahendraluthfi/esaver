@@ -8,7 +8,7 @@ class Transaksi extends CI_Controller {
 		parent::__construct();
 		if($this->auth->is_logged_in() == false){ 			       
 			redirect('login','refresh');
-        }elseif($this->session->userdata('level') !== "ADMIN"){
+        }elseif($this->session->userdata('level') !== "STAFF"){
         	redirect('login','refresh');
         }
         $this->load->library('Uuid');
@@ -17,22 +17,22 @@ class Transaksi extends CI_Controller {
 
 	public function index()
 	{
-		$data['content'] = 'administrator/transaksi';
+		$data['content'] = 'staff/transaksi';
 		$data['data'] = $this->Transaksi_Model->select()->with('client')->get();
-		$this->load->view('administrator/index', $data);	
+		$this->load->view('staff/index', $data);	
 	}
 
 	public function add()
 	{
 		$data['data'] = false;
-		$data['content'] = 'administrator/transaksi_add';
-		$this->load->view('administrator/index', $data);	
+		$data['content'] = 'staff/transaksi_add';
+		$this->load->view('staff/index', $data);	
 	}
 	public function show($id)
 	{
-		$data['content'] = 'administrator/transaksi_add';
+		$data['content'] = 'staff/transaksi_add';
 		$data['data'] = $this->Transaksi_Model->with('client')->find($id);
-		$this->load->view('administrator/index', $data);	
+		$this->load->view('staff/index', $data);	
 	}
 	public function delete($id)
 	{
@@ -45,7 +45,7 @@ class Transaksi extends CI_Controller {
 				<strong>Hapus data berhasil!</strong>
 			</div>
 			');
-		redirect('administrator/transaksi');
+		redirect('staff/transaksi');
 	}
 	public function print($id)
 	{
@@ -68,7 +68,7 @@ class Transaksi extends CI_Controller {
 			if($uploadData){
 				$insertData['foto_bukti'] = 'assets/fotoclient/buktibayar/' . $uploadData['file_name'];
 			}else{
-				redirect('administrator/transaksi/add');
+				redirect('staff/transaksi/add');
 			}
 		}
 		if($this->Transaksi_Model->insert($insertData)){
@@ -79,7 +79,7 @@ class Transaksi extends CI_Controller {
 				<strong>Sukses !</strong> Data disimpan !
 			</div>
 			');
-		redirect('administrator/transaksi/show/' . $id,'refresh');
+		redirect('staff/transaksi/show/' . $id,'refresh');
 		
 	}
 
@@ -104,4 +104,4 @@ class Transaksi extends CI_Controller {
 }
 
 /* End of file Transaksi.php */
-/* Location: ./application/controllers/administrator/Transaksi.php */
+/* Location: ./application/controllers/staff/Transaksi.php */
