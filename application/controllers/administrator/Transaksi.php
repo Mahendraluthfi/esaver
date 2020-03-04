@@ -51,7 +51,7 @@ class Transaksi extends CI_Controller {
 				'amount' => $this->input->post('amount'),
 				'tipe_bayar' => $this->input->post('type'),
 				'foto_bukti' => 'assets/fotoclient/buktibayar/' . $uploadData['file_name'],
-				'date' => date('Y-m-d h:i:s')
+				'date' => date('Y-m-d H:i:s')
 			]);
 			$this->Saldo_Model->update_saldo($this->input->post('user_id'),$this->input->post('amount'));
 			$this->session->set_flashdata('msg', '

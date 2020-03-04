@@ -54,7 +54,7 @@
                     <label class="col-sm-3 col-form-label">Jumlah</label>
                     <div class="col-sm-9">
                         <?php if(!$data): ?>
-                        <input type="text" class="form-control" placeholder="Jumlah" name="amount" required="">
+                        <input type="number" min="0" class="form-control" placeholder="Jumlah" name="amount" required="">
                         <?php else: ?>
                             <p><?php echo $data->amount ?></p>
                         <?php endif ?>
@@ -85,7 +85,7 @@
                     <label class="col-sm-3 col-form-label">Bukti</label>
                     <div class="col-sm-6">
                         <?php if(!$data): ?>
-                        <input type="file" class="" required name="bukti_bayar" id="inputBuktiBayar">
+                        <input type="file" class="" name="bukti_bayar" id="inputBuktiBayar">
                         <?php endif ?>
                         <div class="mt-3">
                             <img src="<?php echo $data? site_url() . $data->foto_bukti:'' ?>" style="max-width:100%" id="imgPreview" alt="">
