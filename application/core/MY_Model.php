@@ -50,6 +50,9 @@ class MY_Model extends CI_Model{
             return $data->result();
         }
     }
+    function getFirst(){
+        return $this->get(true);
+    }
 
     function find($id){
         return $this->select()->condition([$this->pk => $id])->get(true);
