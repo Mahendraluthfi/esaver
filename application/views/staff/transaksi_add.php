@@ -16,7 +16,7 @@
                         <a href="<?php echo base_url() ?>"><i class="ik ik-home"></i> Dashboard</a>
                     </li> 
                     <li class="breadcrumb-item">
-                        <a href="<?php echo base_url('administrator/transaksi') ?>"><i class="ik ik-users"></i> Transaksi</a>
+                        <a href="<?php echo base_url('staff/transaksi') ?>"><i class="ik ik-users"></i> Transaksi</a>
                     </li>                     
                     <li class="breadcrumb-item active" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; width: 100px;" >
                         <?php echo $data? $data->kode_transaksi : 'Tambah Baru' ?>
@@ -33,7 +33,7 @@
     <div class="card-body">
         <div class="container-fluid">
             <?php echo $this->session->flashdata('msg'); ?>
-            <?php echo form_open_multipart('administrator/transaksi/save', array('class' => 'sample-form')); ?>
+            <?php echo form_open_multipart('staff/transaksi/save', array('class' => 'sample-form')); ?>
                 <legend>Data Diri</legend>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">User ID / Jemaah</label>
@@ -98,9 +98,9 @@
                         <?php if(!$data): ?>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <?php else: ?>
-                            <a href="<?php echo site_url('administrator/transaksi/print/' . $data->kode_transaksi) ?>" class="btn btn-primary">Cetak</a>
+                            <a href="<?php echo site_url('staff/transaksi/print/' . $data->kode_transaksi) ?>" class="btn btn-primary">Cetak</a>
                         <?php endif ?> 
-                        <a href="<?php echo site_url('administrator/transaksi') ?>" class="btn btn-danger">Kembali</a> 
+                        <a href="<?php echo site_url('staff/transaksi') ?>" class="btn btn-danger">Kembali</a> 
                     </div>
                 </div>
                 
