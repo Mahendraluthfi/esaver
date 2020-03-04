@@ -72,7 +72,7 @@
                     <label class="col-sm-3 col-form-label">Tipe bayar</label>
                     <div class="col-sm-3">
                         <?php if(!$data): ?>
-                        <select name="type" class="form-control select2">
+                        <select name="type" id="tipe_bayar" class="form-control select2">
                             <option value="Transfer">Transfer</option>
                             <option value="Cash">Cash</option>
                         </select>
@@ -81,11 +81,11 @@
                         <?php endif ?>
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group bukti-bayar-wrapper row">
                     <label class="col-sm-3 col-form-label">Bukti</label>
                     <div class="col-sm-6">
                         <?php if(!$data): ?>
-                        <input type="file" class="" required name="bukti_bayar" id="inputBuktiBayar">
+                        <input type="file" class="" name="bukti_bayar" id="inputBuktiBayar">
                         <?php endif ?>
                         <div class="mt-3">
                             <img src="<?php echo $data? site_url() . $data->foto_bukti:'' ?>" style="max-width:100%" id="imgPreview" alt="">
@@ -97,11 +97,10 @@
                     <div class="col-sm-3">
                         <?php if(!$data): ?>
                         <button type="submit" class="btn btn-primary">Simpan</button>
-                        <a href="<?php echo base_url('administrator/transaksi') ?>" class="btn btn-danger">Batal</a>
                         <?php else: ?>
-                            <a href="<?php echo site_url('administrator/transaksi/print/' . $data->kode_transaksi) ?>" class="btn btn-primary">Cetak</a> 
-                        <?php endif ?>
-                        <a href="<?php echo site_url('administrator/transaksi') ?>" class="btn btn-primary">Kembali</a> 
+                            <a href="<?php echo site_url('administrator/transaksi/print/' . $data->kode_transaksi) ?>" class="btn btn-primary">Cetak</a>
+                        <?php endif ?> 
+                        <a href="<?php echo site_url('administrator/transaksi') ?>" class="btn btn-danger">Kembali</a> 
                     </div>
                 </div>
                 
@@ -112,10 +111,6 @@
 
 
 <script>
-    $('#clientModalTable').on('click','td',function(){
-        console.log(this);
-        
-    })
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -128,9 +123,21 @@
         }
     }
 
-    $("#inputBuktiBayar").change(function() {
-        readURL(this);
-    });
+    $(document).ready(function(){
+        $('#tipe_bayar').change(function(e){
+            $('.bukti-bayar-wrapper').toggle($(this).val() != 'Cash')
+        });
+        $("#inputBuktiBayar").change(function() {
+            readURL(this);
+        });
+
+        <?php if($data): ?>
+            <?php if($data->tipe_bayar == 'Cash'): ?>
+                $('.bukti-bayar-wrapper').hide()
+            <?php endif ?>
+        <?php endif ?>
+    })
+
 </script>
 
 <?php include('client_modal.php') ?>

@@ -42,27 +42,31 @@ class Transaksi extends CI_Controller {
 	}
 
 	public function save(){
-		$uploadData = $this->do_upload('bukti_bayar');
-		if($uploadData){
-			$id = bin2hex(random_bytes(16));
-			$newData = $this->Transaksi_Model->insert([
-				'kode_transaksi'=> $id,
-				'user_id' => $this->input->post('user_id'),
-				'amount' => $this->input->post('amount'),
-				'tipe_bayar' => $this->input->post('type'),
-				'foto_bukti' => 'assets/fotoclient/buktibayar/' . $uploadData['file_name'],
-				'date' => date('Y-m-d h:i:s')
-			]);
-			$this->Saldo_Model->update_saldo($this->input->post('user_id'),$this->input->post('amount'));
-			$this->session->set_flashdata('msg', '
-				<div class="alert alert-success">					
-					<strong>Sukses !</strong> Data disimpan !
-				</div>
-				');
-			redirect('administrator/transaksi/show/' . $id,'refresh');
-		}else{
-			redirect('administrator/transaksi/add');
+		$id = bin2hex(random_bytes(16));
+		$insertData = [
+			'kode_transaksi'=> $id,
+			'user_id' => $this->input->post('user_id'),
+			'amount' => $this->input->post('amount'),
+			'tipe_bayar' => $this->input->post('type'),
+			'date' => date('Y-m-d h:i:s')
+		];
+		if(!empty($_FILES['bukti_bayar']['name'])){
+			$uploadData = $this->do_upload('bukti_bayar');
+			if($uploadData){
+				$insertData['foto_bukti'] = 'assets/fotoclient/buktibayar/' . $uploadData['file_name'];
+			}else{
+				redirect('administrator/transaksi/add');
+			}
 		}
+		if($this->Transaksi_Model->insert($insertData)){
+			$this->Saldo_Model->update_saldo($this->input->post('user_id'),$this->input->post('amount'));
+		}
+		$this->session->set_flashdata('msg', '
+			<div class="alert alert-success">					
+				<strong>Sukses !</strong> Data disimpan !
+			</div>
+			');
+		redirect('administrator/transaksi/show/' . $id,'refresh');
 		
 	}
 
