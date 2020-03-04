@@ -40,7 +40,8 @@
                     <div class="col-sm-9">
                         <?php if(!$data): ?>
                         <div class="input-group">
-                            <input type="text" readonly data-modal="clientModal" class="form-control" placeholder="User ID / Jemaah" name="user_id" required="">
+                            <input type="text" readonly data-modal="clientModalDisplay" class="form-control" placeholder="User ID / Jemaah" required="">
+                            <input type="hidden" readonly data-modal="clientModal" class="form-control" placeholder="User ID / Jemaah" name="user_id" required="">
                             <div class="input-group-append">
                                 <button data-toggle="modal" data-target="#clientModal" class="btn btn-outline-secondary" type="button">Pilih</button>
                             </div>

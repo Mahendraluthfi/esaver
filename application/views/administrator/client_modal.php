@@ -85,6 +85,7 @@ function buildRow(item){
     row.append(buildCol(item.pekerjaan,'pekerjaan'))
     row.click(function(){
         $('input[data-modal=clientModal]').val(item.user_id)
+        $('input[data-modal=clientModalDisplay]').val(item.nama)
         $('#clientModal').modal('hide')
     })
     return row;
