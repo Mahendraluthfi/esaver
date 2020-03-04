@@ -40,6 +40,11 @@ class Transaksi extends CI_Controller {
 		if($this->Transaksi_Model->condition(['kode_transaksi'=>$id])->delete()){
 			$this->Saldo_Model->update_saldo($dTrans->user_id,($dTrans->amount * -1));
 		}
+		$this->session->set_flashdata('msg', '
+			<div class="alert alert-success">					
+				<strong>Hapus data berhasil!</strong>
+			</div>
+			');
 		redirect('administrator/transaksi');
 	}
 	public function print($id)
