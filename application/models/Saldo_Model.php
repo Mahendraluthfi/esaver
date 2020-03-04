@@ -19,7 +19,7 @@ class Saldo_Model extends MY_Model{
         }else{
             $newSaldo = $this->insert([
                 'user_id' => $userId,
-                'total_saldo' => ($saldoData->total_saldo + $newSaldo)
+                'total_saldo' => $newSaldo
             ]);
         }
     }

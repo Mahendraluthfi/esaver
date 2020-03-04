@@ -125,25 +125,16 @@
                             <nav id="main-menu-navigation" class="navigation-main">
                                 <div class="nav-lavel">Navigation</div>
                                 <div class="nav-item">
-                                    <a href="../../index.html"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
-                                </div>                                
-                                <div class="nav-lavel">UI Element</div>
-                                <div class="nav-item has-sub active open">
-                                    <a href="#"><i class="ik ik-box"></i><span>Basic</span></a>
-                                    <div class="submenu-content">
-                                        <a href="alerts.html" class="menu-item">Alerts</a>
-                                        <a href="badges.html" class="menu-item">Badges</a>
-                                        <a href="buttons.html" class="menu-item active">Buttons</a>
-                                        <a href="navigation.html" class="menu-item">Navigation</a>
-                                    </div>
-                                </div>                                
+                                    <a href="<?php echo site_url('client/dashboard') ?>"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
+                                    <a href="<?php echo site_url('client/client/saldo') ?>"><i class="ik ik-dollar-sign"></i><span>Saldo</span></a>
+                                </div>                                                                                 
                             </nav>
                         </div>
                     </div>
                 </div>
                 <div class="main-content">
                     <div class="container-fluid">
-                        
+                        <?php $this->load->view($content); ?>
                     </div>
                 </div>
                 <aside class="right-sidebar">

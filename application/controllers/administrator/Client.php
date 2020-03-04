@@ -29,7 +29,7 @@ class Client extends CI_Controller {
 		if($this->input->get('name')){
 			$data = $data->condition(['nama'=>$this->input->get('name')],'like');
 		}
-		$data = $data->get();
+		$data = $data->limit(10)->get();
 		return_json($data);
 	}
 	public function saldo($id)

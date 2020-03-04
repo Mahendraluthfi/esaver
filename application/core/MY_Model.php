@@ -14,6 +14,11 @@ class MY_Model extends CI_Model{
         }
     }
 
+    function limit($limit,$index = 0){
+        $this->result->limit($limit,$index);
+        return $this;
+    }
+
     function select(){
         $this->result->select('*');
         $this->result->from($this->tb_name);
@@ -44,6 +49,9 @@ class MY_Model extends CI_Model{
         }else{
             return $data->result();
         }
+    }
+    function getFirst(){
+        return $this->get(true);
     }
 
     function find($id){
