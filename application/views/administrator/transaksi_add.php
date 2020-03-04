@@ -54,7 +54,7 @@
                     <label class="col-sm-3 col-form-label">Jumlah</label>
                     <div class="col-sm-9">
                         <?php if(!$data): ?>
-                        <input type="text" class="form-control" placeholder="Jumlah" name="amount" required="">
+                        <input type="number" min="0" class="form-control" placeholder="Jumlah" name="amount" required="">
                         <?php else: ?>
                             <p><?php echo $data->amount ?></p>
                         <?php endif ?>
