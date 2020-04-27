@@ -2,7 +2,7 @@
     <div class="row align-items-end">
         <div class="col-lg-8">
             <div class="page-header-title">
-                <i class="ik ik-home bg-blue"></i>
+                <i class="ik ik-user-check bg-blue"></i>
                 <div class="d-inline">
                     <h5>Staff</h5>
                     <span>Data Akun Staff</span>

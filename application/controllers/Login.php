@@ -38,10 +38,13 @@ class Login extends CI_Controller {
 				redirect('login','refresh');
 			}else{
 				$data=$get->row();
+				$plus = $this->db->get_where('saldo', array('total_saldo >=' => '24000000', 'verifikasi' => '0'))->num_rows();
+
 				$array = array(
 					'username' => $data->username,
 					'password' => $data->password,
-					'level' => $data->level
+					'level' => $data->level,
+					'notif' => $plus
 				);
 				
 				$this->session->set_userdata( $array );
@@ -49,7 +52,7 @@ class Login extends CI_Controller {
 			}
 		}else{
 			$this->session->set_userdata([
-				'username' => $loginClient->email,
+				'user_id' => $loginClient->user_id,
 				'level' => 'CLIENT'
 			]);
 			redirect('client/dashboard','refresh');
@@ -59,7 +62,7 @@ class Login extends CI_Controller {
 	private function checkLoginClient(){
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-		return $this->Client_Model->select()->condition(['email'=>$username,'password'=>$password])->get(true);
+		return $this->Client_Model->select()->condition(['telp'=>$username,'password'=>$password])->get(true);
 	}
 
 	public function logout()

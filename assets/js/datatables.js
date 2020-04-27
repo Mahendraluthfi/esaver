@@ -522,6 +522,7 @@ $(document).ready(function() {
 
 
     $('#simpletable').DataTable();
+    $('#simpletable2').DataTable();
 
     $('#order-table').DataTable({
         "order": [

@@ -42,11 +42,11 @@
                             </div><br>
                             <!-- <img src="<?php echo base_url() ?>assets/img/logo.png" alt="" height="70"> -->
                             <h3 class="text-center">Sign In to E-Saver</h3>                            
-                            <h3 class="text-center">PT. TSURAIYA TRAVEL</h3> 
+                            <h3 class="text-center">PT. TSURAIYA SAHABAT SUNNAH</h3> 
                             <?php echo $this->session->flashdata('msg'); ?>                           
                             <?php echo form_open('login/submit'); ?>
                                 <div class="form-group">
-                                    <input type="text" name="username" class="form-control" placeholder="Username" required="">
+                                    <input type="text" name="username" class="form-control" placeholder="Username / No. Handphone" required="">
                                     <i class="ik ik-user"></i>
                                 </div>
                                 <div class="form-group">
@@ -61,6 +61,7 @@
                                 <!-- <p><a href="register.html">Forgot Password ?</a></p> -->
                             <!-- </div> -->
                         </div>
+                            <span style="padding-top: 100px;"><center><i>* Login Jamaah menggunakan Nomor Handphone yang sudah terdaftar.</i></center></span>
                     </div>
                 </div>
             </div>

@@ -10,3 +10,4 @@ class Client_Model extends MY_Model{
         ]
     ];
 }
+

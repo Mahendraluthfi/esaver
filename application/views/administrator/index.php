@@ -61,17 +61,17 @@
                         <div class="top-menu d-flex align-items-center">
                             <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
                             <a href="<?php echo base_url() ?>"><img src="<?php echo base_url() ?>assets/img/logo.png" alt="" height="35"></a>                       
-                            <h5 style="margin-left: 10px; font-family: Exo; ">PT. Tsuraiya Travel</h5>
+                            <h5 style="margin-left: 10px; font-family: Exo; ">PT. Tsuraiya Sahabat Sunnah</h5>
                         </div>
                         <div class="top-menu d-flex align-items-center">                            
                             <!-- <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal" data-target="#appsModal"><i class="ik ik-grid"></i></button> -->
                             <div class="dropdown">
                                 <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="<?php echo base_url() ?>assets/img/user.jpg" alt=""></a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="../profile.html"><i class="ik ik-user dropdown-icon"></i> Profile</a>
+                                    <!-- <a class="dropdown-item" href="../profile.html"><i class="ik ik-user dropdown-icon"></i> Profile</a>
                                     <a class="dropdown-item" href="#"><i class="ik ik-settings dropdown-icon"></i> Settings</a>
                                     <a class="dropdown-item" href="#"><span class="float-right"><span class="badge badge-primary">6</span></span><i class="ik ik-mail dropdown-icon"></i> Inbox</a>
-                                    <a class="dropdown-item" href="#"><i class="ik ik-navigation dropdown-icon"></i> Message</a>
+                                    <a class="dropdown-item" href="#"><i class="ik ik-navigation dropdown-icon"></i> Message</a> -->
                                     <a class="dropdown-item" href="<?php echo base_url('login/logout') ?>"><i class="ik ik-power dropdown-icon"></i> Logout</a>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                         <div class="nav-container">
                             <nav id="main-menu-navigation" class="navigation-main">                                
                                 <div class="nav-item">
-                                    <a href="<?php echo base_url('administrator') ?>"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
+                                    <a href="<?php echo base_url('administrator') ?>"><i class="ik ik-home"></i><span>Dashboard</span></a>
                                 </div>  
                                 <div class="nav-lavel">Pengguna</div>
                                 <div class="nav-item">
@@ -112,19 +112,26 @@
                                 <div class="nav-item has-sub">
                                     <a href="#"><i class="ik ik-upload-cloud"></i><span>Export / Import</span></a>
                                     <div class="submenu-content">
-                                        <a href="alerts.html" class="menu-item">Data Client</a>
-                                        <a href="badges.html" class="menu-item">Data Transaksi</a>                                        
+                                        <a href="<?php echo base_url('administrator/export') ?>" class="menu-item">Data Jamaah</a>
+                                        <!-- <a href="#" class="menu-item">Data Transaksi</a>                                         -->
                                     </div>
                                 </div>       
                                 <div class="nav-lavel">Laporan</div>
                                 <div class="nav-item">
-                                    <a href="../../index.html"><i class="ik ik-file-text"></i><span>Laporan Transaksi</span></a>                                    
+                                    <a href="<?php echo base_url('administrator/laporan') ?>"><i class="ik ik-file-text"></i><span>Laporan Transaksi</span></a>                                    
+                                </div> 
+                                <div class="nav-item">
+                                    <a href="<?php echo base_url('administrator/mutasi') ?>"><i class="ik ik-git-pull-request"></i><span>Cek Mutasi</span></a>
                                 </div> 
                                 <div class="nav-lavel">Pengaturan</div>
                                 <div class="nav-item">
-                                    <a href="../../index.html"><i class="ik ik-bell"></i><span>Notifikasi Saldo</span></a>                                    
-                                </div> 
+                                <?php 
+                                    $cek = $this->db->get_where('saldo', array('total_saldo >=' => '24000000', 'verifikasi' => '0'))->num_rows();
+                                 ?>
 
+                                    <a href="<?php echo base_url('administrator/reminder') ?>"><i class="ik ik-bell"></i><span>Reminder Saldo</span><span class="badge badge-danger"><?php echo $cek; ?></span></a>
+
+                                </div>
                             </nav>
                         </div>
                     </div>
@@ -133,142 +140,7 @@
                     <div class="container-fluid">
                         <?php $this->load->view($content); ?>
                     </div>
-                </div>
-                <aside class="right-sidebar">
-                    <div class="sidebar-chat" data-plugin="chat-sidebar">
-                        <div class="sidebar-chat-info">
-                            <h6>Chat List</h6>
-                            <form class="mr-t-10">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search for friends ..."> 
-                                    <i class="ik ik-search"></i>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="chat-list">
-                            <div class="list-group row">
-                                <a href="javascript:void(0)" class="list-group-item" data-chat-user="Gene Newman">
-                                    <figure class="user--online">
-                                        <img src="<?php echo base_url() ?>assets/img/users/1.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Gene Newman</span>  <span class="username">@gene_newman</span> </span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item" data-chat-user="Billy Black">
-                                    <figure class="user--online">
-                                        <img src="<?php echo base_url() ?>assets/img/users/2.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Billy Black</span>  <span class="username">@billyblack</span> </span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item" data-chat-user="Herbert Diaz">
-                                    <figure class="user--online">
-                                        <img src="<?php echo base_url() ?>assets/img/users/3.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Herbert Diaz</span>  <span class="username">@herbert</span> </span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item" data-chat-user="Sylvia Harvey">
-                                    <figure class="user--busy">
-                                        <img src="<?php echo base_url() ?>assets/img/users/4.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Sylvia Harvey</span>  <span class="username">@sylvia</span> </span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item active" data-chat-user="Marsha Hoffman">
-                                    <figure class="user--busy">
-                                        <img src="<?php echo base_url() ?>assets/img/users/5.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Marsha Hoffman</span>  <span class="username">@m_hoffman</span> </span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item" data-chat-user="Mason Grant">
-                                    <figure class="user--offline">
-                                        <img src="<?php echo base_url() ?>assets/img/users/1.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Mason Grant</span>  <span class="username">@masongrant</span> </span>
-                                </a>
-                                <a href="javascript:void(0)" class="list-group-item" data-chat-user="Shelly Sullivan">
-                                    <figure class="user--offline">
-                                        <img src="<?php echo base_url() ?>assets/img/users/2.jpg" class="rounded-circle" alt="">
-                                    </figure><span><span class="name">Shelly Sullivan</span>  <span class="username">@shelly</span></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
-
-                <div class="chat-panel" hidden>
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between">
-                            <a href="javascript:void(0);"><i class="ik ik-message-square text-success"></i></a>  
-                            <span class="user-name">John Doe</span> 
-                            <button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        </div>
-                        <div class="card-body">
-                            <div class="widget-chat-activity flex-1">
-                                <div class="messages">
-                                    <div class="message media reply">
-                                        <figure class="user--online">
-                                            <a href="#">
-                                                <img src="<?php echo base_url() ?>assets/img/users/3.jpg" class="rounded-circle" alt="">
-                                            </a>
-                                        </figure>
-                                        <div class="message-body media-body">
-                                            <p>Epic Cheeseburgers come in all kind of styles.</p>
-                                        </div>
-                                    </div>
-                                    <div class="message media">
-                                        <figure class="user--online">
-                                            <a href="#">
-                                                <img src="<?php echo base_url() ?>assets/img/users/1.jpg" class="rounded-circle" alt="">
-                                            </a>
-                                        </figure>
-                                        <div class="message-body media-body">
-                                            <p>Cheeseburgers make your knees weak.</p>
-                                        </div>
-                                    </div>
-                                    <div class="message media reply">
-                                        <figure class="user--offline">
-                                            <a href="#">
-                                                <img src="<?php echo base_url() ?>assets/img/users/5.jpg" class="rounded-circle" alt="">
-                                            </a>
-                                        </figure>
-                                        <div class="message-body media-body">
-                                            <p>Cheeseburgers will never let you down.</p>
-                                            <p>They'll also never run around or desert you.</p>
-                                        </div>
-                                    </div>
-                                    <div class="message media">
-                                        <figure class="user--online">
-                                            <a href="#">
-                                                <img src="<?php echo base_url() ?>assets/img/users/1.jpg" class="rounded-circle" alt="">
-                                            </a>
-                                        </figure>
-                                        <div class="message-body media-body">
-                                            <p>A great cheeseburger is a gastronomical event.</p>
-                                        </div>
-                                    </div>
-                                    <div class="message media reply">
-                                        <figure class="user--busy">
-                                            <a href="#">
-                                                <img src="<?php echo base_url() ?>assets/img/users/5.jpg" class="rounded-circle" alt="">
-                                            </a>
-                                        </figure>
-                                        <div class="message-body media-body">
-                                            <p>There's a cheesy incarnation waiting for you no matter what you palete preferences are.</p>
-                                        </div>
-                                    </div>
-                                    <div class="message media">
-                                        <figure class="user--online">
-                                            <a href="#">
-                                                <img src="<?php echo base_url() ?>assets/img/users/1.jpg" class="rounded-circle" alt="">
-                                            </a>
-                                        </figure>
-                                        <div class="message-body media-body">
-                                            <p>If you are a vegan, we are sorry for you loss.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <form action="javascript:void(0)" class="card-footer" method="post">
-                            <div class="d-flex justify-content-end">
-                                <textarea class="border-0 flex-1" rows="1" placeholder="Type your message here"></textarea>
-                                <button class="btn btn-icon" type="submit"><i class="ik ik-arrow-right text-success"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                </div>                
                 <footer class="footer">
                     <div class="w-100 clearfix">
                         <span class="text-center text-sm-left d-md-inline-block">Copyright © 2020 Cerations.</span>

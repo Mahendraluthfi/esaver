@@ -54,6 +54,7 @@
                     <th>Tanggal</th>
                     <th>Jumlah</th>
                     <th>Tipe</th>
+                    <th>Input by</th>
                     <th width="10%">#</th>                    
                 </tr>
                 </thead>
@@ -66,6 +67,7 @@
                     <td><?php echo $item->date ?></td>
                     <td><?php echo moneyFormat($item->amount) ?></td>
                     <td><?php echo $item->tipe_bayar ?></td>
+                    <td><?php echo $item->input_by ?></td>
                     <td>
                         <a href="<?php echo site_url() . 'staff/transaksi/show/'. $item->kode_transaksi ?>" class="btn  btn-info"><i class="ik ik-eye"></i></a>
                         <a data-toggle="modal" data-target="#modalDeleteTransaksi" href="<?php echo site_url() . 'staff/transaksi/delete/'. $item->kode_transaksi ?>" class="btn  btn-danger"><i class="ik ik-trash"></i></a>
@@ -81,6 +83,7 @@
                     <th>Tanggal</th>
                     <th>Jumlah</th>
                     <th>Tipe</th>
+                    <th>Input by</th>
                     <th width="10%">#</th>                    
                 </tr>
                 </tfoot>

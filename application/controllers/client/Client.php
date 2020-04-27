@@ -17,16 +17,26 @@ class Client extends CI_Controller {
 
 	public function index()
 	{
+		echo $this->session->userdata('user_id');
 	}
+
 	public function saldo()
 	{
-		$client = $this->Client_Model->select()->condition(['email'=>$this->session->userdata('username')])->getFirst();
-		$data['data']['transaksi'] =  $this->Transaksi_Model->select()->condition(['user_id'=>$client->user_id])->get();
+		$client = $this->Client_Model->select()->condition(['user_id'=>$this->session->userdata('user_id')])->getFirst();
+		$data['data']['transaksi'] =  $this->Transaksi_Model->select()->condition(['user_id'=>$this->session->userdata('user_id')])->get();
 		$data['data']['client'] =  $client;
 		$data['data']['saldo'] =  $this->Saldo_Model->find($client->user_id);
 		$data['content'] = 'administrator/client_transaksi';
 		$this->load->view('client/index', $data);
 	}
+
+	public function print($id)
+	{
+		$data['content'] = 'print/transaksi_item';
+		$data['data'] = $this->Transaksi_Model->with('client')->find($id);
+		$this->load->view('print/layout', $data);	
+	}
+
 
 }
 

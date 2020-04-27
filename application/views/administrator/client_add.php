@@ -77,7 +77,7 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">E-mail</label>
                     <div class="col-sm-9">
-                        <input type="email" class="form-control" placeholder="Alamat E-mail" name="email" required="">
+                        <input type="email" class="form-control" placeholder="Alamat E-mail" name="email">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -143,7 +143,7 @@
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">No Telepon / HP</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="telp" placeholder="No Telepon / HP">                        
+                        <input type="text" class="form-control" name="telp" placeholder="No Telepon / HP" required="">                        
                     </div>
                 </div>
                 <div class="form-group row">
@@ -166,18 +166,15 @@
                 </div>
 
                 <legend>Data Keberangkatan</legend>
-                <!-- <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Rencana Keberangkatan</label>
-                    <div class="col-sm-3">
-                        <input type="month" class="form-control" name="" placeholder="Pekerjaan">
-                    </div>
-                </div> -->
+           
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Paket Tabungan Umroh</label>
                     <div class="col-sm-3">
                         <select name="paket" class="form-control select2">
                             <option value="12">12 Bulan</option>
                             <option value="24">24 Bulan</option>
+                            <option value="36">36 Bulan</option>
+                            <option value="48">48 Bulan</option>
                         </select>
                     </div>
                 </div>

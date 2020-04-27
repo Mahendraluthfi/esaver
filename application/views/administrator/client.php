@@ -2,7 +2,7 @@
     <div class="row align-items-end">
         <div class="col-lg-8">
             <div class="page-header-title">
-                <i class="ik ik-home bg-blue"></i>
+                <i class="ik ik-users bg-blue"></i>
                 <div class="d-inline">
                     <h5>Jamaah</h5>
                     <span>Data Jamaah Umroh</span>
@@ -50,8 +50,8 @@
                 <tr>
                     <th width="1%">No</th>
                     <th>User ID</th>
+                    <th>Tgl Daftar</th>
                     <th>Nama Lengkap</th>
-                    <th>Usia</th>
                     <th>Alamat</th>
                     <th>Paket</th>
                     <th>Status</th>
@@ -63,8 +63,8 @@
                         <tr>
                             <td><?php echo $no++; ?></td>
                             <td><?php echo substr($data->user_id, 0,18) ?></td>
+                            <td><?php echo date('d M Y', strtotime($data->reg_date)) ?></td>
                             <td><?php echo $data->nama ?></td>
-                            <td><?php echo $data->usia ?> thn</td>
                             <td><?php echo $data->alamat ?></td>
                             <td><?php echo $data->paket ?> bulan</td>
                             <td><?php 
@@ -76,7 +76,7 @@
                              ?></td>
                             <td>
                                 <a href="<?php echo site_url('administrator/client/saldo/'.$data->user_id) ?>" class="btn btn-primary"><i class="ik ik-dollar-sign"></i></a>
-                                <button type="button" class="btn btn-info"><i class="ik ik-eye"></i></button>
+                                <button type="button" class="btn btn-info" onclick="detail('<?php echo $data->user_id ?>')"><i class="ik ik-eye"></i></button>
                                 <a href="<?php echo base_url('administrator/client/edit/'.$data->user_id) ?>" class="btn btn-warning" title="Edit Data"><i class="ik ik-edit"></i></a>
                                 <button type="button" class="btn btn-danger" onclick="hapus('<?php echo $data->user_id ?>')"><i class="ik ik-trash"></i></button>
 
@@ -88,8 +88,8 @@
                 <tr>
                     <th>No</th>
                     <th>User ID</th>
+                    <th>Tgl Daftar</th>
                     <th>Nama Lengkap</th>
-                    <th>Usia</th>
                     <th>Alamat</th>
                     <th>Paket</th>
                     <th>Status</th>
@@ -102,44 +102,6 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="inactive-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-           <!--  <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterLabel">Tambah Data Staff</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div> -->
-            <div class="modal-body">
-                <h4 class="text-center">Nonaktifkan akun staff ?</h4>
-            </div>
-            <div class="modal-footer" style="justify-content: center;">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <a href="#" class="btn btn-primary btn-inv">Simpan</a>
-            </div>
-            <?php echo form_close(); ?>            
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="active-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-           <!--  <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterLabel">Tambah Data Staff</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div> -->
-            <div class="modal-body">
-                <h4 class="text-center">Aktifkan akun staff ?</h4>
-            </div>
-            <div class="modal-footer" style="justify-content: center;">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <a href="#" class="btn btn-primary btn-act">Simpan</a>
-            </div>
-            <?php echo form_close(); ?>            
-        </div>
-    </div>
-</div>
 
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -159,6 +121,105 @@
         </div>
     </div>
 </div>
+<style>
+    .dt{
+        font-weight: bold;
+    }
+</style>
+<div class="modal fade" id="detail-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterLabel">Detail Data Jamaah</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-hover table-striped">                    
+                        <tr>
+                            <td width="35%" class="dt">User ID</td>
+                            <td><span class="userid"></span></td>
+                        </tr>                    
+                        <tr>
+                            <td width="35%" class="dt">Nama Lengkap</td>
+                            <td><span class="nama"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">NIK</td>
+                            <td><span class="nik"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">No Paspor</td>
+                            <td><span class="no_paspor"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Tempat/Tgl Lahir</td>
+                            <td><span class="tempat"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Jenis Kelamin</td>
+                            <td><span class="jekel"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Email</td>
+                            <td><span class="email"></span></td>
+                        </tr>           
+                        <tr>
+                            <td width="35%" class="dt">Usia</td>
+                            <td><span class="usia"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Ibu Kandung</td>
+                            <td><span class="nm_ibu"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Status Pernikahan</td>
+                            <td><span class="status_nikah"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Alamat Lengkap</td>
+                            <td><span class="alamat"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Provinsi</td>
+                            <td><span class="nama_prov"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Kab/Kota</td>
+                            <td><span class="nama_kabkot"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Kecamatan</td>
+                            <td><span class="nama_kec"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Kode Pos</td>
+                            <td><span class="kodepos"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">No Telepon</td>
+                            <td><span class="telp"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Pekerjaan</td>
+                            <td><span class="pekerjaan"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Foto</td>
+                            <td><img src="" class="img" alt="" height="200" width="150"></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Paket Umroh</td>
+                            <td><span class="paket"></span></td>
+                        </tr>
+                        <tr>
+                            <td width="35%" class="dt">Password</td>
+                            <td><span class="text-danger dt password"></span></td>
+                        </tr>
+                </table>
+            </div>                            
+        </div>
+    </div>
+</div>
 
 <script>
   function hapus(id) {
@@ -173,6 +234,49 @@
                     $('.btn-hps').attr('href','<?php echo base_url('administrator/client/delete/') ?>'+id);
                     $('#delete-modal').modal('show');                
 
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error get data from ajax');
+            }
+        });
+    }
+
+    function detail(id) {
+         $.ajax({
+            url : "<?php echo base_url('administrator/client/get_id/')?>" + id,
+            type: "GET",
+            dataType: "JSON",
+            success: function(data)
+            {              
+                $('.userid').text(data.user_id);                                      
+                $('.nama').text(data.nama);                                      
+                $('.no_paspor').text(data.no_paspor);                                      
+                $('.email').text(data.email);                                      
+                $('.tempat').text(data.tempat+' / '+data.tgl_lahir);                                      
+                $('.nik').text(data.nik);                                      
+                $('.jekel').text(data.jekel);                                      
+                $('.usia').text(data.usia+' th');                                      
+                $('.status_nikah').text(data.status_nikah);                                      
+                $('.nm_ibu').text(data.nm_ibu);                                      
+                $('.alamat').text(data.alamat);                                      
+                $('.nama_prov').text(data.nama_prov);                                      
+                $('.nama_kabkot').text(data.nama_kabkot);                                      
+                $('.nama_kec').text(data.nama_kec);                                      
+                $('.telp').text(data.telp);                                      
+                $('.kodepos').text(data.kodepos);                                      
+                $('.pekerjaan').text(data.pekerjaan);                                      
+                $('.paket').text(data.paket+' Bulan'); 
+                if (data.foto == "") {
+                    $('.img').attr('src','<?php echo base_url('assets/img/dum.png') ?>');
+                }else{
+                    $('.img').attr('src','<?php echo base_url('assets/fotoclient/') ?>'+data.foto);
+                }                                     
+                $('.password').text(data.password);                                      
+
+
+                
+                $('#detail-modal').modal('show');
             },
             error: function (jqXHR, textStatus, errorThrown)
             {

@@ -7,6 +7,11 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Svg\\' => array($vendorDir . '/phenx/php-svg-lib/src/Svg'),
+    'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
+    'PhpOffice\\PhpSpreadsheet\\' => array($vendorDir . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet'),
+    'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
+    'Matrix\\' => array($vendorDir . '/markbaker/matrix/classes/src'),
     'FontLib\\' => array($vendorDir . '/phenx/php-font-lib/src/FontLib'),
     'Dompdf\\' => array($vendorDir . '/dompdf/dompdf/src'),
+    'Complex\\' => array($vendorDir . '/markbaker/complex/classes/src'),
 );

@@ -61,6 +61,7 @@ class Transaksi extends CI_Controller {
 			'user_id' => $this->input->post('user_id'),
 			'amount' => $this->input->post('amount'),
 			'tipe_bayar' => $this->input->post('type'),
+			'input_by' => $this->session->userdata('username'),
 			'date' => date('Y-m-d h:i:s')
 		];
 		if(!empty($_FILES['bukti_bayar']['name'])){

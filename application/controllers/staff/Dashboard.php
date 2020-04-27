@@ -15,8 +15,11 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$content['content'] = 'staff/dashboard';
-		$this->load->view('staff/index',$content);
+		$data['staff'] = $this->db->get_where('users', array('level' => 'STAFF'))->num_rows();
+		$data['client'] = $this->db->get('client')->num_rows();
+		$data['transaksi'] = $this->db->get('transaksi')->num_rows();
+		$data['content'] = 'staff/dashboard';
+		$this->load->view('staff/index', $data);
 	}
 
 }

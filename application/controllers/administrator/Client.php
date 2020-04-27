@@ -12,7 +12,7 @@ class Client extends CI_Controller {
         	redirect('login','refresh');
         }
         $this->load->library('Uuid');
-        $this->load->model(['Client_Model','Transaksi_Model','Saldo_Model']);
+        $this->load->model(['Client_Model','Transaksi_Model','Saldo_Model','administrator/Cmodel']);
         $this->load->helper(['response']);
 	}
 
@@ -212,6 +212,12 @@ class Client extends CI_Controller {
 		$data = $this->db->get_where('client', array('user_id'))->row();
 		echo json_encode($data);
 	}
+
+    public function get_id($id)
+    {
+        $data = $this->Cmodel->get_join($id)->row();
+        echo json_encode($data);
+    }
 
 	public function delete($id)
 	{

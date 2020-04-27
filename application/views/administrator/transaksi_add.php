@@ -99,7 +99,7 @@
                         <?php if(!$data): ?>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <?php else: ?>
-                            <a href="<?php echo site_url('administrator/transaksi/print/' . $data->kode_transaksi) ?>" class="btn btn-primary">Cetak</a>
+                            <a href="<?php echo site_url('administrator/transaksi/print/' . $data->kode_transaksi) ?>" class="btn btn-primary" target="_blank">Cetak</a>
                         <?php endif ?> 
                         <a href="<?php echo site_url('administrator/transaksi') ?>" class="btn btn-danger">Kembali</a> 
                     </div>

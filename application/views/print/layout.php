@@ -38,8 +38,10 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>PT. Tsuraiya Travel</h2>
-            <p>Dolor qui labore pariatur id occaecat.Non sit dolor nulla cillum.</p>
+            <h2>PT. Tsuraiya Sahabat Sunnah</h2>
+            <h4>Umrah and Hajj Handling Service</h4>
+            <p>Jl. Kapas Raya Utara No.823, Kota Semarang. Whatsapp : 085799942323,         Email: info@tsuraiyatourtravel.co.id</p>
+            
         </div>
         <div class="content">
             <?php $this->load->view($content); ?>
